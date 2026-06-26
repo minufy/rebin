@@ -4,11 +4,18 @@ GameBase(Game)
 
 function Game:init()
     self.objects = {}
+    self.current_level = "1"
     Level:init()
-    Level:load_level("1")
+    Level:load_level(self.current_level)
 end
 
 function Game:update(dt)
+    if CONSOLE and Input.refresh.pressed then
+        self.objects = {}
+        Level:refresh()
+        Level:load_level(self.current_level)
+    end
+
     Camera:update(dt)
 
     self.group_names = {}

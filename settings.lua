@@ -1,3 +1,5 @@
+Input.refresh = NewInput({"f5"})
+
 Input.right = NewInput({"right", "d"})
 Input.left = NewInput({"left", "a"})
 -- Input.up = NewInput({"up", "w"})
