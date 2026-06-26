@@ -2,16 +2,16 @@ local Decal = Object:extend()
 SetType(Decal, "decal")
 
 function Decal:new(data)
-    self.type = data.type
+    self.texture = data.texture:sub(1, #data.texture-4)
     self.x = data.x
     self.y = data.y
-    self.r = data.r
+    self.r = data.rotation
     self.w = Image[data.type]:getWidth()
     self.h = Image[data.type]:getHeight()
 end
 
 function Decal:draw()
-    love.graphics.draw(Image[self.type], self.x, self.y, self.r)
+    love.graphics.draw(Image[self.texture], self.x, self.y, self.r, 1, 1, self.w/2, self.h/2)
 end
 
 return Decal

@@ -18,3 +18,7 @@ TILE_NAMES = {
 ENTITIY_NAMES = {
     "player",
 }
+
+DECAL_NAMES = {
+    "test",
+}
