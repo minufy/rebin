@@ -1,17 +1,14 @@
-local Zone = Object:extend()
+local CamZone = Object:extend()
 
-function Zone:new(data)
+function CamZone:new(data)
     self.x = data.x
     self.y = data.y
     self.w = data.w or TILE_SIZE
     self.h = data.h or TILE_SIZE
-    self.value = data.value or "cam"
-    self.locked = true
-    self.scalable = true
 end
 
-function Zone:draw()
-    if Edit.editing then
+function CamZone:draw()
+    if CONSOLE then
         love.graphics.setColor(0, 1, 1, 0.1)
         love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
         Color.reset()
@@ -20,4 +17,4 @@ function Zone:draw()
     end
 end
 
-return Zone
+return CamZone

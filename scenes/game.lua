@@ -1,39 +1,32 @@
 Game = {}
-local GameBase = require("stuff.game_base")
+local GameBase = require("rebase.game_base")
 GameBase(Game)
 
 function Game:init()
-    Edit:init()
+    self.objects = {}
     Level:init()
     Level:load_level("1")
 end
 
-function Game:before_reload()
-    self.objects = {}
-end
-
 function Game:update(dt)
-    Edit:update(dt)
     Camera:update(dt)
 
-    if not Edit.editing then
-        self.group_names = {}
-        for group_name, _ in pairs(self.objects) do
-            table.insert(self.group_names, group_name)
-        end
-        for _, group_name in ipairs(self.group_names) do
-            local i = #self.objects[group_name]
-            while i > 0 do
-                local object = self.objects[group_name][i]
-                if object.update then
-                    object:update(dt)
-                end
-                if object.remove then
-                    self.objects[group_name][i] = self.objects[group_name][#self.objects[group_name]]
-                    self.objects[group_name][#self.objects[group_name]] = nil
-                end
-                i = i-1
+    self.group_names = {}
+    for group_name, _ in pairs(self.objects) do
+        table.insert(self.group_names, group_name)
+    end
+    for _, group_name in ipairs(self.group_names) do
+        local i = #self.objects[group_name]
+        while i > 0 do
+            local object = self.objects[group_name][i]
+            if object.update then
+                object:update(dt)
             end
+            if object.remove then
+                self.objects[group_name][i] = self.objects[group_name][#self.objects[group_name]]
+                self.objects[group_name][#self.objects[group_name]] = nil
+            end
+            i = i-1
         end
     end
 end
@@ -53,17 +46,8 @@ function Game:draw()
             end
         end
     end
-    
-    if Edit.editing then
-        Edit:draw()
-    end
-    
+
     Camera:stop()
-
-    if Edit.editing then
-        Edit:draw_hud()
-    end
-
     Outline:stop()
 end
 

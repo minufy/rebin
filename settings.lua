@@ -10,25 +10,7 @@ Camera.x_damp = 0.1
 Camera.y_damp = 0.1
 Camera.shake_damp = 0.2
 
-TILE_TYPES = {
+TILE_SIZE = 16
+TILE_NAMES = {
     "tile",
 }
-OBJECT_TYPES = {
-    "player",
-    "zone",
-}
-IMG_TYPES = {
-    "test",
-}
-
-TILE_SIZE = 16
-GRID_SIZE = TILE_SIZE/2
-
-local object_align = {
-    player = Align.Bottom,
-}
-OBJECT_ALIGN = setmetatable(object_align, {
-    __index = function (t, k)
-        return Align.None
-    end
-})
