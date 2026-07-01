@@ -4,6 +4,7 @@ GameBase(Game)
 
 function Game:init()
     self.objects = {}
+    self.tiles = {}
     self.current_level = "1"
     Level:init()
     Level:load_level(self.current_level)
@@ -46,6 +47,7 @@ function Game:draw()
     Camera:start()
     -- Outline:start()
     
+    self.tiles.tiles:draw()
     for group_name, group in pairs(self.objects) do
         for _, object in ipairs(group) do
             if object.draw then
