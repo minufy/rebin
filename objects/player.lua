@@ -7,8 +7,8 @@ Player:implement(require("objects.player.collision"))
 NewImage("player")
 
 function Player:new(data)
-    self.x = data.x
-    self.y = data.y
+    self.x = data.x-data.originX
+    self.y = data.y-data.originY
     self.w = Image.player:getWidth()
     self.h = Image.player:getHeight()
 
